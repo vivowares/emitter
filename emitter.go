@@ -340,12 +340,12 @@ func send(
 	e Event, wait bool,
 ) (sent, canceled bool) {
 
-	// defer func() {
-	// 	if r := recover(); r != nil {
-	// 		canceled = false
-	// 		sent = false
-	// 	}
-	// }()
+	defer func() {
+		if r := recover(); r != nil {
+			canceled = false
+			sent = false
+		}
+	}()
 
 	if !wait {
 		select {
